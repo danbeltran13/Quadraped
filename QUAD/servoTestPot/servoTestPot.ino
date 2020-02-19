@@ -1,10 +1,10 @@
 const int potPin= A0;
-const int change= 10;
+const int change= 30;
 const int maxPw = 2500;
 const int minPw = 500;
 const int servoPin = 3;
 const int timePos = 30;
-int counter = 500;
+int counter = 1857;
 
 
 /*# <ch> P <pw> S <spd> T <time> <cr> <- println()*/
@@ -12,9 +12,9 @@ int counter = 500;
 void move(int servo, int position, int time) {
   Serial.print("#");
   Serial.print(servo);
-  Serial.print(" P");
+  Serial.print("P");
   Serial.print(position);
-  Serial.print(" T");
+  Serial.print("T");
   Serial.println(time);
 }
 
@@ -45,6 +45,6 @@ void loop() {
     move(3,counter,timePos);
   }
   Serial.println(counter);
-  delay(300);
+  delay(1000);
   
 }
