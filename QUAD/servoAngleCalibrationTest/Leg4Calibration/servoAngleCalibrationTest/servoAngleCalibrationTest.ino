@@ -1,6 +1,6 @@
 
 //Leg 3 Calibration, Will use leg 2 calibration test as a template.
-#include "leg3Constants.h"
+#include "leg4Constants.h"
 #include <SoftwareSerial.h>
 
 SoftwareSerial quadSerial(2, 3); // RX, TX
@@ -35,9 +35,9 @@ void setup() {
   quadSerial.begin(9600); // quadSerial connects to the linxmotion, we use this so that we dont have to unplug rx and tx wires everytime
 
   // We call moves functions so that we can hold servos stable as we test a servo, Dont use unless servo has been calibrated
-  move(shoulderPin,1615,servoTime);//90
-  move(thighPin,1709,servoTime);//180
-  move(kneePin,1496,servoTime);
+  move(shoulderPin,1253,servoTime);//90
+  move(thighPin,1441,servoTime);//180
+  move(kneePin,1576,servoTime);
   Serial.println("Connected");
 }
 
@@ -56,9 +56,9 @@ void loop() {
     int convertedValue;
     //Convert the (0,180) value entered in serial to a PW value that is used by the lynxmotion 
     //ONLY USE THIS MAP FUNCTION ON THE SERVO YOU NEED TO CONVERT   
-   convertedValue = map(value, kneeRangeMinAngle, kneeRangeMaxAngle, kneeRangeMinPw, kneeRangeMaxPw);//Knee Convertion 
-   //convertedValue = map(value, thighRangeMinAngle, thighRangeMaxAngle, thighRangeMinPw, thighRangeMaxPw); //thigh Convertion 
-   //convertedValue = map(value, shoulderRangeMinAngle, shoulderRangeMaxAngle, shoulderRangeMinPw, shoulderRangeMaxPw); //shoulder Convertion 
+  // convertedValue = map(value, kneeRangeMinAngle, kneeRangeMaxAngle, kneeRangeMinPw, kneeRangeMaxPw);//Knee Convertion 
+   convertedValue = map(value, thighRangeMinAngle, thighRangeMaxAngle, thighRangeMinPw, thighRangeMaxPw); //thigh Convertion 
+  // convertedValue = map(value, shoulderRangeMinAngle, shoulderRangeMaxAngle, shoulderRangeMinPw, shoulderRangeMaxPw); //shoulder Convertion 
 
 
     // Print The value
@@ -69,9 +69,9 @@ void loop() {
     
     
     // Move the servo you are testing
-   // move(shoulderPin, convertedValue, servoTime);
-   // move(thighPin, convertedValue, servoTime);
-      move(kneePin, convertedValue, servoTime);
+  // move(shoulderPin, convertedValue, servoTime);
+   move(thighPin, convertedValue, servoTime);
+  //   move(kneePin, convertedValue, servoTime);
     
   
 
