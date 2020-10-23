@@ -1,10 +1,10 @@
 const int potPin= A0;
-const int change= 30;
+const int change= 100;
 const int maxPw = 2500;
-const int minPw = 500;
+const int minPw = 500;//500
 const int servoPin = 3;
 const int timePos = 30;
-int counter = 1857;
+int counter = 1330;
 
 
 /*# <ch> P <pw> S <spd> T <time> <cr> <- println()*/
@@ -21,6 +21,8 @@ void move(int servo, int position, int time) {
 void setup() {
   Serial.begin(9600);
   Serial.println("Connected");
+  move(1,1500,30);
+   move(2,1700,30);
 }
 
 void loop() {
@@ -33,7 +35,7 @@ void loop() {
     }else{
         counter-=change;
     }
-    move(3,counter,timePos);
+    move(servoPin,counter,timePos);
   }if(analogRead(potPin) < 300){
     if(counter >= maxPw){
       counter = maxPw;
@@ -42,7 +44,7 @@ void loop() {
 
     counter+=change;
     }
-    move(3,counter,timePos);
+    move(servoPin,counter,timePos);
   }
   Serial.println(counter);
   delay(1000);
