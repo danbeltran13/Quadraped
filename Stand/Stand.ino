@@ -18,7 +18,7 @@ leg4 topLeft;
 SoftwareSerial quadSerial(2, 3); // RX, TX
 
 // This is how long it will take for the servo to move to the angle you gave it
-int servoTime = 3000;
+int servoTime = 1500;
 
 
 // This function will move the servo to the angle given
@@ -77,23 +77,35 @@ void setup() {
   
   // Leg 1
   move(frontRight.shoulderPin, leg1Shoulder, servoTime);
+  delay(servoTime); // There is a delay here so that we dont draw to much current
   move(frontRight.thighPin, leg1Thigh, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
   move(frontRight.kneePin, leg1Knee, servoTime);
-
+ delay(servoTime); // There is a delay here so that we dont draw to much current
+ 
   // Leg 2
   move(bottomRight.shoulderPin, leg2Shoulder, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
   move(bottomRight.thighPin, leg2Thigh, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
   move(bottomRight.kneePin, leg2Knee, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
 
   // Leg 3
   move(bottomLeft.shoulderPin, leg3Shoulder, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
   move(bottomLeft.thighPin, leg3Thigh, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
   move(bottomLeft.kneePin, leg3Knee, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
 
   // Leg 4
   move(topLeft.shoulderPin, leg4Shoulder, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
   move(topLeft.thighPin, leg4Thigh, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
   move(topLeft.kneePin, leg4Knee, servoTime);
+   delay(servoTime); // There is a delay here so that we dont draw to much current
 
 
 }
