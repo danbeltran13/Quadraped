@@ -1,5 +1,7 @@
 /* We will make the quadruped stand up on its own 4 legs
   The values included in the leg constants files may not me upto date since they are a copy from the values of the leg calibration test
+
+  Servos on leg1 and leg2 are fliped, 
 */
 
 //To access the values, the legs are classes which have their specific value. This is because all the values have the same name across all 4 legs. Therefore it is easier to access them using a class
@@ -55,12 +57,12 @@ void setup() {
   // leg 1
   // Must convert the angles to a PW value for each servo
   int leg1Shoulder = map(90, frontRight.shoulderRangeMinAngle, frontRight.shoulderRangeMaxAngle, frontRight.shoulderRangeMinPw, frontRight.shoulderRangeMaxPw);
-  int leg1Thigh =  map(45, frontRight.thighRangeMinAngle, frontRight.thighRangeMaxAngle, frontRight.thighRangeMinPw, frontRight.thighRangeMaxPw);
+  int leg1Thigh =  map(135, frontRight.thighRangeMinAngle, frontRight.thighRangeMaxAngle, frontRight.thighRangeMinPw, frontRight.thighRangeMaxPw);
   int leg1Knee = map(90, frontRight.kneeRangeMinAngle, frontRight.kneeRangeMaxAngle, frontRight.kneeRangeMinPw, frontRight.kneeRangeMaxPw);
 
   // Leg 2
   int leg2Shoulder = map(90, bottomRight.shoulderRangeMinAngle, bottomRight.shoulderRangeMaxAngle, bottomRight.shoulderRangeMinPw, bottomRight.shoulderRangeMaxPw);
-  int leg2Thigh =  map(45, bottomRight.thighRangeMinAngle, bottomRight.thighRangeMaxAngle, bottomRight.thighRangeMinPw, bottomRight.thighRangeMaxPw);
+  int leg2Thigh =  map(135, bottomRight.thighRangeMinAngle, bottomRight.thighRangeMaxAngle, bottomRight.thighRangeMinPw, bottomRight.thighRangeMaxPw);
   int leg2Knee = map(90, bottomRight.kneeRangeMinAngle, bottomRight.kneeRangeMaxAngle, bottomRight.kneeRangeMinPw, bottomRight.kneeRangeMaxPw);
 
   // Leg 3
