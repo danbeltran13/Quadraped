@@ -9,10 +9,10 @@
 #include "leg4Constants.h"
 #include <SoftwareSerial.h> // This is the serial to talk to the lynxmotion servo controller
 
-leg1 frontRight ();
-leg2 bottomRight();
-leg3 bottomLeft();
-leg4 topLeft();
+leg1 frontRight;
+leg2 bottomRight;
+leg3 bottomLeft;
+leg4 topLeft;
 
 //We will need a serial connection so that we can talk to the lynxmotion
 SoftwareSerial quadSerial(2, 3); // RX, TX
@@ -49,7 +49,32 @@ void setup() {
   // To make the quad stand up, we will have the shoulder, thign, and knee servos of each leg move to angle 90, 45, 90
   // We must first convert each of those angles to a PW value that the lynxmotion understands
 
+  
+  // Convert all the angles to PW
+  
   // leg 1
+  // Must convert the angles to a PW value for each servo
+  int leg1Shoulder = map(90, frontRight.shoulderRangeMinAngle, frontRight.shoulderRangeMaxAngle, frontRight.shoulderRangeMinPw, frontRight.shoulderRangeMaxPw);
+  int leg1Thigh =  map(45, frontRight.thighRangeMinAngle, frontRight.thighRangeMaxAngle, frontRight.thighRangeMinPw, frontRight.thighRangeMaxPw);
+  int leg1Knee = map(90, frontRight.kneeRangeMinAngle, frontRight.kneeRangeMaxAngle, frontRight.kneeRangeMinPw, frontRight.kneeRangeMaxPw);
+
+  // Leg 2 
+  int leg2Shoulder = map(90, bottomRight.shoulderRangeMinAngle, bottomRight.shoulderRangeMaxAngle, bottomRight.shoulderRangeMinPw, bottomRight.shoulderRangeMaxPw);
+  int leg2Thigh =  map(45, bottomRight.thighRangeMinAngle, bottomRight.thighRangeMaxAngle, bottomRight.thighRangeMinPw, bottomRight.thighRangeMaxPw);
+  int leg2Knee = map(90, bottomRight.kneeRangeMinAngle, bottomRight.kneeRangeMaxAngle, bottomRight.kneeRangeMinPw, bottomRight.kneeRangeMaxPw);
+
+  // Leg 3 
+  int leg3Shoulder = map(90, bottomLeft.shoulderRangeMinAngle, bottomLeft.shoulderRangeMaxAngle, bottomLeft.shoulderRangeMinPw, bottomLeft.shoulderRangeMaxPw);
+  int leg3Thigh =  map(45, bottomLeft.thighRangeMinAngle, bottomLeft.thighRangeMaxAngle, bottomLeft.thighRangeMinPw, bottomLeft.thighRangeMaxPw);
+  int leg3Knee = map(90, bottomLeft.kneeRangeMinAngle, bottomLeft.kneeRangeMaxAngle, bottomLeft.kneeRangeMinPw, bottomLeft.kneeRangeMaxPw);
+
+  // Leg 4
+  int leg3Shoulder = map(90, bottomLeft.shoulderRangeMinAngle, bottomLeft.shoulderRangeMaxAngle, bottomLeft.shoulderRangeMinPw, bottomLeft.shoulderRangeMaxPw);
+  int leg3Thigh =  map(45, bottomLeft.thighRangeMinAngle, bottomLeft.thighRangeMaxAngle, bottomLeft.thighRangeMinPw, bottomLeft.thighRangeMaxPw);
+  int leg3Knee = map(90, bottomLeft.kneeRangeMinAngle, bottomLeft.kneeRangeMaxAngle, bottomLeft.kneeRangeMinPw, bottomLeft.kneeRangeMaxPw);
+
+
+
 
 }
 
