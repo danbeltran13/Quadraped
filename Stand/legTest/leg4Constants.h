@@ -23,4 +23,15 @@ class leg4 {
     const int kneeRangeMaxPw = 2228;
     const int kneeRangeMinAngle = 0;
     const int kneeRangeMaxAngle = 180;
+
+    int shoulderMove (int angle){ // angle to PW value for shoulder 
+      return map(angle, shoulderRangeMinAngle, shoulderRangeMaxAngle, shoulderRangeMinPw, shoulderRangeMaxPw);
+    }
+    int thighMove (int angle){ // angle to PW value for thigh
+      return map(angle, thighRangeMinAngle, thighRangeMaxAngle, thighRangeMinPw, thighRangeMaxPw);  
+    }
+    int kneeMove (int angle){ // angle to PW value for knee
+      return map(angle, kneeRangeMinAngle, kneeRangeMaxAngle, kneeRangeMinPw, kneeRangeMaxPw);
+
+    }
 };
