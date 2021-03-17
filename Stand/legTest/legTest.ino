@@ -91,7 +91,30 @@ void move(int servo, int position, int time) {
 }
 
 
+void legwalkTest(int leg){ // walking motion for 1 leg 
+  for (int i = 0; i < 4; i++){
+    // groupMove(leg # , shoulder angle, thigh angle, knee angle, time)
+    groupMove(leg, 90, 35 ,90, 250); // 
+    delay (250);
+    groupMove(leg, 90, 0, 0, 250); // 
+    delay (250);
+    groupMove(leg, 90, 35, 90, 250); // 
+    delay (250);
 
+  }
+}
+
+/*
+void walkTest(){ // 
+  legwalkTest(1); // the leg walk function will probably need to be rewritten to account for the delay within the function to group 2 diagonal legs together
+  legwalkTest(3);
+  delay (servoTime * 2); // a delay inbetween the diagonal leg movments
+  legwalkTest(2);
+  legwalkTest(4);
+  
+}
+
+*/
 
 void setup() {
   // Begin Serial Connections Here,
@@ -112,36 +135,14 @@ void setup() {
     int leg1Knee = map(90, frontRight.kneeRangeMinAngle, frontRight.kneeRangeMaxAngle, frontRight.kneeRangeMinPw, frontRight.kneeRangeMaxPw);
   */
 
-  // Leg 1
-  groupMove(1, 0, 0, 0, servoTime);
-  groupMove(2, 0, 0, 0, servoTime);
-  groupMove(3, 0, 0, 0, servoTime);
-  groupMove(4, 0, 0, 0, servoTime);
-  delay(servoTime);
-  groupMove(1, 90, 90, 90, servoTime);
-  groupMove(2, 90, 90, 90, servoTime);
-  groupMove(3, 90, 90, 90, servoTime);
-  groupMove(4, 90, 90, 90, servoTime);
-delay(servoTime);
-    groupMove(1, 0, 0, 0, servoTime);
-  groupMove(2, 0, 0, 0, servoTime);
-  groupMove(3, 0, 0, 0, servoTime);
-  groupMove(4, 0, 0, 0, servoTime);
-delay(servoTime);
-  groupMove(1, 90, 90, 90, servoTime);
-  groupMove(2, 90, 90, 90, servoTime);
-  groupMove(3, 90, 90, 90, servoTime);
-  groupMove(4, 90, 90, 90, servoTime);
-delay(servoTime);
-    groupMove(1, 0, 0, 0, servoTime);
-  groupMove(2, 0, 0, 0, servoTime);
-  groupMove(3, 0, 0, 0, servoTime);
-  groupMove(4, 0, 0, 0, servoTime);
-delay(servoTime);
-  groupMove(1, 90, 90, 90, servoTime);
-  groupMove(2, 90, 90, 90, servoTime);
-  groupMove(3, 90, 90, 90, servoTime);
-  groupMove(4, 90, 90, 90, servoTime);
+
+  // walking test  
+   groupMove(2, 90, 35 ,90, servoTime);
+   groupMove(3, 90, 35 ,90, servoTime);
+   groupMove(4, 90, 35 ,90, servoTime);
+   legwalkTest(1);
+
+
 
 }
 void loop() {
