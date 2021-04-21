@@ -41,34 +41,33 @@ void groupMove(int legNumber, int shoulderAngle, int angleThigh, int angleKnee, 
       moveStatement(frontRight.shoulderPin, frontRight.shoulderMove(shoulderAngle));
       moveStatement(frontRight.thighPin, frontRight.thighMove(angleThigh));
       moveStatement(frontRight.kneePin, frontRight.kneeMove(angleKnee));
-      quadSerial.print("T");
-      quadSerial.println(time);
       break;
   
     case 2:
       moveStatement(bottomRight.shoulderPin, bottomRight.shoulderMove(shoulderAngle));
       moveStatement(bottomRight.thighPin, bottomRight.thighMove(angleThigh));
       moveStatement(bottomRight.kneePin, bottomRight.kneeMove(angleKnee));
-      quadSerial.print("T");
-      quadSerial.println(time);
       break;
       
     case 3:
       moveStatement(bottomLeft.shoulderPin, bottomLeft.shoulderMove(shoulderAngle));
       moveStatement(bottomLeft.thighPin, bottomLeft.thighMove(angleThigh));
       moveStatement(bottomLeft.kneePin, bottomLeft.kneeMove(angleKnee));
-      quadSerial.print("T");
-      quadSerial.println(time);
       break;
       
     case 4:
       moveStatement(topLeft.shoulderPin, topLeft.shoulderMove(shoulderAngle));
       moveStatement(topLeft.thighPin, topLeft.thighMove(angleThigh));
       moveStatement(topLeft.kneePin, topLeft.kneeMove(angleKnee));
+      
+      break;
+     
+  }
+   // Since we need to move multiple legs, the quad serial print statement needs to be removed in order to fill the serial with instructions from both legs;
+    if (time >=  0){
       quadSerial.print("T");
       quadSerial.println(time);
-      break;
-  }
+    }
   
 }
 
@@ -104,6 +103,85 @@ void legwalkTest(int leg){ // walking motion for 1 leg
   }
 }
 
+int delayS = 250;
+void legWalkTest2(int leg){ // walking motion for 1 leg 
+  for (int i = 0; i < 4; i++){
+    // groupMove(leg # , shoulder angle, thigh angle, knee angle, time)
+
+    // 3 motions 
+    //  Extend Forward 
+    groupMove(leg, 90, 80 ,110, delayS); //
+    delay(250);
+    
+    // Extends Backwards
+    groupMove(leg, 90, 10 ,130, delayS); // 
+    delay(250);
+
+    // Lifts Leg
+    groupMove(leg, 90, 00 ,10, delayS); //
+    delay(250);
+    
+  }
+  groupMove(leg, 90, 35 ,90, delayS); // 
+  delay(250);
+}
+
+
+void walkFunctionTest(int delayS){
+   // A full walking cycle is, moveforward - movebackwards - lift leg
+   int dontExecute = -10;
+   // Move Thigh Back
+
+   // Movement1  
+   //  Legs 1 and 3 Extend Forward 
+    groupMove(1, 90, 80 ,110, dontExecute); //
+    groupMove(3, 90, 80 ,110, dontExecute); //
+
+   // Legs 2  and 4 Move Backwards
+    groupMove(2, 90, 40 ,130, dontExecute); // 
+    groupMove(4, 90, 30 ,130, delayS); //   
+    delay(delayS); 
+
+   // Motion 2
+    //  Legs 1 and 3 Extends Backwards
+    groupMove(1, 90, 30 ,130, dontExecute); // 
+   groupMove(3, 90, 30 ,130, dontExecute); //
+    
+    // Legs 2 and 4 are lifting legs
+   groupMove(2, 90, 50 ,70, dontExecute); //
+    groupMove(4, 90, 50 ,70, delayS); // 
+    
+   delay(delayS);
+
+    // Motion 3
+    // Legs 1 and 3 are lifting leg
+    groupMove(1, 90, 50 ,70, dontExecute); //
+    groupMove(3, 90, 50 ,70, dontExecute); //
+   
+
+    //  Legs 2 and 4 Extend Forward 
+    groupMove(2, 90, 80 ,110, dontExecute); //
+    groupMove(4, 90, 80 ,110, delayS); // 
+    delay(delayS);
+    
+  //  Return Legs Home
+ /* groupMove(1, 90, 45 ,120, dontExecute); // 
+  groupMove(2, 90,  45 ,120, dontExecute); // 
+  groupMove(3, 90,  45 ,120, dontExecute); // 
+  groupMove(4, 90,  45 ,120, delayS); // 
+  delay(delayS); */
+  
+  
+}
+
+void homePos(int delayS){
+  int dontExecute = -10;
+  groupMove(1, 95, 55 ,130, dontExecute); // 
+  groupMove(2, 95,  55 ,130, dontExecute); // 
+  groupMove(3, 95,  55 ,130, dontExecute); // 
+  groupMove(4, 95,  55 ,130, delayS); // 
+  delay(delayS); 
+}
 /*
 void walkTest(){ // 
   legwalkTest(1); // the leg walk function will probably need to be rewritten to account for the delay within the function to group 2 diagonal legs together
@@ -135,12 +213,21 @@ void setup() {
     int leg1Knee = map(90, frontRight.kneeRangeMinAngle, frontRight.kneeRangeMaxAngle, frontRight.kneeRangeMinPw, frontRight.kneeRangeMaxPw);
   */
 
+  
+  // Stand test  
+   groupMove(1, 90, 45 ,120, servoTime);
+   groupMove(2, 90, 45 ,120, servoTime);
+   groupMove(3, 90, 45 ,120, servoTime);
+   groupMove(4, 90, 45 ,120, servoTime);
+   //legWalkTest2(1);
 
-  // walking test  
-   groupMove(2, 90, 35 ,90, servoTime);
-   groupMove(3, 90, 35 ,90, servoTime);
-   groupMove(4, 90, 35 ,90, servoTime);
-   legwalkTest(1);
+ 
+   for (int i = 0; i < 4; i++){
+    walkFunctionTest(1000);
+   }
+
+   homePos(250);
+    
 
 
 
